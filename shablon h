@@ -1,0 +1,18 @@
+#include "Shablon.h"
+
+char arr1[] = "abcABCD";
+char arr2[] = "DCBAcba";
+
+int main()
+{
+    char input[20], output[20];
+    cout << "Input text : ";
+    cin >> input;
+
+    //encoding
+    Crypt(arr1, arr2, input, output);
+    cout << "\nencoded text is:"<< output;
+
+    //Decoding
+    Crypt(arr2, arr1, output, input);
+    cout << "\nDecoded text is:"<<input;
