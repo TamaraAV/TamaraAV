@@ -1,0 +1,15 @@
+//amena mec yndhanur bajanarar 
+#include <iostream>
+
+#include<iostream>
+using namespace std;
+int NOD(int a, int b) {
+    if (a < b) {
+        swap(a, b);
+    }
+    while (a % b != 0) {
+        a = a % b;
+        swap(a, b);
+    }
+    return b;
+}
