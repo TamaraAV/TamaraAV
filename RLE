@@ -23,7 +23,7 @@ string encode(string str)
     }
 
     return encoding;
-}//fgdf
+}
 
 
 int main()
