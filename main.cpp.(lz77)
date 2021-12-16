@@ -1,0 +1,47 @@
+// main.cpp. Вызывает функцию lz77. Этот файл содержит «главную» функцию. Здесь начинается и заканчивается выполнение программы.
+//
+
+# включить  < iostream >
+# включить  " lz77-file.h "
+# включить  " lz77.h "
+
+int  main ( int argc, char * argv [])
+{
+	std :: cout << " lz77! \ n " ;
+	если (argc < 4 )
+	{
+		printf ( " Использование: \ n LZ77 e in out - кодировать in to out \ n LZ77 d in out - декодировать in to out \ n " );
+		возврат - 1 ;
+	}
+
+	int in_file;  // входной файл
+	int out_file; // выходной файл
+	Lz77File lz77f;
+
+	// открывать файлы на входе и выходе
+	in_file = _open (argv [ 2 ], _O_BINARY | _O_RDWR,
+		_S_IREAD | _S_IWRITE);
+	out_file = _open (argv [ 3 ], _O_BINARY | _O_WRONLY | _O_CREAT
+		| _O_TRUNC, _S_IREAD | _S_IWRITE);
+
+	lz77Alg lz77meth (in_file, out_file, lz77f);
+
+	if ( _stricmp (argv [ 1 ], " -e " ) == 0 ) // сжимаем
+	{
+		lz77f. assign_write (исходящий_файл);
+		lz77meth. кодировать ();
+	}
+	else  if ( _stricmp (argv [ 1 ], " -d " ) == 0 ) //   распаковать
+	{
+		lz77f. assign_read (in_file);
+		lz77meth. декодировать ();
+	}
+	else  printf ( " Ничего не делать \ n " );
+
+	_close (in_file);
+	_close (исходный_файл);
+
+	возврат  0 ;
+
+
+}
