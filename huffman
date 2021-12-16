@@ -1,0 +1,50 @@
+def  Huffman ( строка ):
+    класс  NodeTree ( объект ):
+
+        def  __init__ ( self , left = None , right = None ):
+            я . left  =  left
+            я . right  =  право
+
+         узлы def ( self ):
+            возврат ( self . left , self . right )
+
+        def  __str__ ( сам ):
+            return  '% s_% s'  % ( self . left , self . right )
+
+
+    def  huffman_code_tree ( узел , left = True , binString  =  '' ):
+        если  тип ( узел ) -  str :
+            вернуть { узел : binString }
+        ( l , r ) =  узел . узлы ()
+        d  =  dict ()
+        d . обновление ( huffman_code_tree ( l , True , binString  +  '0' ))
+        d . обновление ( huffman_code_tree ( r , False , binString  +  '1' ))
+        вернуться  д
+
+
+    freq  = {}
+    для  c  в  строке :
+        если  c  в  freq :
+            freq [ c ] + =  1
+        еще :
+            freq [ c ] =  1
+
+    freq  =  sorted ( freq . items (), key = lambda  x : x [ 0 ], reverse = True )
+
+    узлы  =  частота
+    пока  len ( узлы ) >  1 :
+        ( key1 , c1 ) =  узлы [ - 1 ]
+        ( key2 , c2 ) =  узлы [ - 2 ]
+        узлы  =  узлы [: - 2 ]
+        Узел  =  NodeTree ( ключ1 , ключ2 )
+        узлы . добавить (( узел , c1  +  c2 ))
+        узлы  =  отсортировано ( узлы , ключ = лямбда  x : x [ 1 ], обратный = True )
+    huffmanCode  =  huffman_code_tree ( узлы [ 0 ] [ 0 ])
+    return  huffmanCode
+
+def  compress ( строка ):
+    res  =  ''
+    huffmanCode  =  Huffman ( строка )
+    для  i  в  строке :
+        res + = huffmanCode [ i ]
+    вернуть  res
